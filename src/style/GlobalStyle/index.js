@@ -13,7 +13,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     position: relative;
     font-family: ${p => p.theme.fonts.body};
-    font-size: ${p => p.theme.fontSizes.body}px;
+    font-size: ${p => p.theme.fontSizes.body};
+    color: ${p => p.theme.colors.primary};
+    ${'' /* background: ${p => p.theme.colors.primary}; */}
   }
 `;
 
