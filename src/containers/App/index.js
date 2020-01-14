@@ -1,53 +1,57 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Button, Box } from 'rebass/styled-components';
+
 import ChatBot from 'react-simple-chatbot';
-import styled from 'styled-components';
+import CreatePDF from '~/components/PDF';
 
-const StyledBox = styled(Box)`
-  align-items: center;
-`;
-
-const steps = [
+export const steps = [
     {
       id: '1',
-      message: 'What is your name?',
-      trigger: '2',
+      message: 'Wie ist dein Familienname?',
+      trigger: 'name',
     },
     {
-      id: '2',
+      id: 'name',
       user: true,
       trigger: '3',
     },
     {
       id: '3',
-      message: 'Hi {previousValue}, nice to meet you! How can I help you?',
+      message: 'Hallo! Wie kann ich dir helfen?',
       trigger: '4',
     },
     {
       id: '4',
       options: [
-        { value: 1, label: 'Open Data', trigger: '5' },
-        { value: 2, label: 'Shared Mobility', trigger: '6' },
-        { value: 3, label: 'Digitalisation', trigger: '7' },
+        { value: 1, label: 'Meldeformular', trigger: '5' },
+        // { value: 2, label: 'Shared Mobility', trigger: '5' },
+        // { value: 3, label: 'Digitalisation', trigger: '5' },
       ]
     },
     {
       id: "5",
-      message: "Okay, let's talk about Open Data!",
+      // message: "Ihr Formular steht zum Download bereit:",
+      component: (<CreatePDF></CreatePDF>),
       end: true,
     },
-    {
-      id: "6",
-      message: "Okay, let's talk about Shared Mobility!",
-      end: true,
-    },
-    {
-      id: "7",
-      message: "Okay, let's talk about Digitalisation!",
-      end: true,
-    },
+    // {
+    //   id: "6",
+    //   message: "Okay, let's talk about Shared Mobility!",
+    //   end: true,
+    // },
+    // {
+    //   id: "7",
+    //   message: "Okay, let's talk about Digitalisation!",
+    //   end: true,
+    // },
 ];
+
+
+const StyledBox = styled(Box)`
+  align-items: center;
+`;
 
 const StyledChatBot = styled(ChatBot)`
   .rsc-container {
