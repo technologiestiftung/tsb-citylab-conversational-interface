@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import download from 'downloadjs'
 
+import Button from '~/components/Button';
+
 // const anmeldungPDFLink = "https://www.berlin.de/formularverzeichnis/?formular=/labo/zentrale-einwohnerangelegenheiten/_assets/anmeldung_bei_der_meldebehoerde.pdf"
 const anmeldungPDF = "/public/pdf/anmeldung_bei_der_meldebehoerde.pdf"
 // const anmeldungPDF = "/public/pdf/test.pdf"
@@ -35,7 +37,7 @@ const CreatePDF = p => {
 
   return (
     <div>
-      <button onClick={() => {modifyPDF(steps.name.value)}}>Formular downloaden</button>
+      <Button onClick={() => {modifyPDF(steps.name.value)}}>Formular downloaden</Button>
     </div>
   )
 }
