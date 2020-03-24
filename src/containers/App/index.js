@@ -6,6 +6,8 @@ import { Button, Box } from 'rebass/styled-components';
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
+import personSteps from './person';
+
 export const steps = [
     {
       id: '1',
@@ -15,11 +17,12 @@ export const steps = [
     {
       id: '2',
       options: [
-        { value: 1, label: 'Meldeformular', trigger: '3' },
+        { value: 1, label: 'Meldeformular', trigger: 'p-first-name' },
         // { value: 2, label: 'Shared Mobility', trigger: '5' },
         // { value: 3, label: 'Digitalisation', trigger: '5' },
       ]
     },
+    ...personSteps,
     {
       id: '3',
       message: 'Wie ist dein Familienname?',
