@@ -45,7 +45,7 @@ const personSteps = [
     id: 'r-other-names',
     options: [
       { value: 1, label: 'Ja', trigger: 'p-other-names-manual' },
-      { value: 0, label: 'Nein', trigger: 'p-birth' },
+      { value: 0, label: 'Nein', trigger: 'p-birth-date' },
     ],
   },
   {
@@ -56,15 +56,15 @@ const personSteps = [
   {
     id: 'r-other-names-manual',
     user: true,
-    trigger: 'p-birth',
+    trigger: 'p-birth-date',
   },
   {
-    id: 'p-birth',
+    id: 'p-birth-date',
     message: 'Wie lautet Dein Geburtsdatum?',
-    trigger: 'r-birth',
+    trigger: 'r-birth-date',
   },
   {
-    id: 'r-birth',
+    id: 'r-birth-date',
     user: true,
     trigger: 'p-birth-place',
   },
