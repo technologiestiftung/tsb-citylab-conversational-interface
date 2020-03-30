@@ -15,7 +15,7 @@ const CreatePDF = p => {
 
   const person1 = aggregatePersonInfo(steps);
 
-  const modifyPDF = async (name) => {
+  const modifyPDF = async person => {
     const existingPdfBytes = await fetch(anmeldungPDF).then(res => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
@@ -26,7 +26,7 @@ const CreatePDF = p => {
 
     const { width, height } = firstPage.getSize();
 
-    firstPage.drawText(name, {
+    firstPage.drawText(person.name.last, {
       x: 150,
       y: 575,
       size: 16,
@@ -40,7 +40,7 @@ const CreatePDF = p => {
 
   return (
     <div>
-      <Button onClick={() => {modifyPDF(steps.name.value)}}>Formular downloaden</Button>
+      <Button onClick={() => {modifyPDF(person1)}}>Formular downloaden</Button>
     </div>
   )
 }
