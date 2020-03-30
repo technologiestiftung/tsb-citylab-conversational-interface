@@ -24,22 +24,12 @@ export const steps = [
     },
     ...personSteps,
     {
-      id: '3',
-      message: 'Wie ist dein Familienname?',
-      trigger: 'name',
+      id: "p-download",
+      message: "Vielen Dank. Dein Formular steht zum Download bereit:",
+      trigger: "r-download"
     },
     {
-      id: 'name',
-      user: true,
-      trigger: '4',
-    },
-    {
-      id: "4",
-      message: "Ihr Formular steht zum Download bereit:",
-      trigger: "5"
-    },
-    {
-      id: "5",
+      id: "r-download",
       component: (<CreatePDF></CreatePDF>),
       end: true,
     },

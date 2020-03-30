@@ -133,7 +133,7 @@ const personSteps = [
   {
     id: 'r-sex',
     user: true,
-    trigger: '3',
+    trigger: 'p-download',
   },
 ];
 
