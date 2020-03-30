@@ -105,11 +105,23 @@ const personSteps = [
   },
   {
     id: 'p-religion',
-    message: 'Welcher Religion gehörst Du formell an?',
+    message: 'Gehörst Du formell einer Religion an?',
     trigger: 'r-religion',
   },
   {
     id: 'r-religion',
+    options: [
+      { value: 1, label: 'Ja', trigger: 'p-religion-manual' },
+      { value: 2, label: 'Nein', trigger: 'p-sex' },
+    ],
+  },
+  {
+    id: 'p-religion-manual',
+    message: 'Danke. Welcher Religion gehörst Du an?',
+    trigger: 'r-religion-manual',
+  },
+  {
+    id: 'r-religion-manual',
     user: true,
     trigger: 'p-sex',
   },
