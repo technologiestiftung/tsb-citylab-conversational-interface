@@ -33,7 +33,7 @@ const personSteps = [
     id: 'r-doctor',
     options: [
       { value: 1, label: 'Ja', trigger: 'p-other-names' },
-      { value: 2, label: 'Nein', trigger: 'p-other-names' },
+      { value: 0, label: 'Nein', trigger: 'p-other-names' },
     ],
   },
   {
@@ -45,7 +45,7 @@ const personSteps = [
     id: 'r-other-names',
     options: [
       { value: 1, label: 'Ja', trigger: 'p-other-names-manual' },
-      { value: 2, label: 'Nein', trigger: 'p-birth' },
+      { value: 0, label: 'Nein', trigger: 'p-birth' },
     ],
   },
   {
@@ -79,7 +79,7 @@ const personSteps = [
     id: 'r-birth-name',
     options: [
       { value: 1, label: 'Ja', trigger: 'p-birth-name-manual' },
-      { value: 2, label: 'Nein', trigger: 'p-nationality' },
+      { value: 0, label: 'Nein', trigger: 'p-nationality' },
     ],
   },
   {
@@ -112,7 +112,7 @@ const personSteps = [
     id: 'r-religion',
     options: [
       { value: 1, label: 'Ja', trigger: 'p-religion-manual' },
-      { value: 2, label: 'Nein', trigger: 'p-sex' },
+      { value: 0, label: 'Nein', trigger: 'p-sex' },
     ],
   },
   {
