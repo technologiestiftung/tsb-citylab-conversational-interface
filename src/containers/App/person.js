@@ -11,7 +11,7 @@ const personSteps = [
   {
     id: 'r-first-name',
     user: true,
-    placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen',
+    placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
     trigger: 'p-last-name',
   },
   {
@@ -60,14 +60,23 @@ const personSteps = [
   },
   {
     id: 'p-birth',
-    message:
-      'Als nächstes benötige ich Dein Geburtsdatum, sowie Ort und Land Deiner Geburt.',
+    message: 'Wie lautet Dein Geburtsdatum?',
     trigger: 'r-birth',
   },
   {
     id: 'r-birth',
     user: true,
-    placeholder: 'z.B. 24.03.1980, Berlin, Deutschland',
+    trigger: 'p-birth-place',
+  },
+  {
+    id: 'p-birth-place',
+    message: 'In welchem Ort und Land wurdest Du geboren?',
+    trigger: 'r-birth-place',
+  },
+  {
+    id: 'r-birth-place',
+    user: true,
+    placeholder: 'Ort, Land ...',
     trigger: 'p-birth-name',
   },
   {
