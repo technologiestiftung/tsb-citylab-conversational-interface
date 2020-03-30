@@ -6,7 +6,7 @@ import { Button, Box } from 'rebass/styled-components';
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
-import personSteps from './person';
+import personSteps from './steps/person';
 
 export const steps = [
     {

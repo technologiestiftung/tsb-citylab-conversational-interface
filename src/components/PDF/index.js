@@ -4,7 +4,7 @@ import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import download from 'downloadjs'
 
 import Button from '~/components/Button';
-import aggregatePersonInfo from '../../containers/App/aggregateResponses';
+import aggregatePersonInfo from './aggregateResponses';
 
 // const anmeldungPDFLink = "https://www.berlin.de/formularverzeichnis/?formular=/labo/zentrale-einwohnerangelegenheiten/_assets/anmeldung_bei_der_meldebehoerde.pdf"
 const anmeldungPDF = "/public/pdf/anmeldung_bei_der_meldebehoerde.pdf"
