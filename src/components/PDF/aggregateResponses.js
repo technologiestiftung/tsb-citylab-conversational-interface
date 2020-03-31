@@ -13,7 +13,7 @@ const aggregatePerson = (data, personID) => {
             }`
           : data[`r-${personID}-birth-name-manual`].value,
       other:
-        data[`r-${personID}-other-names-manual`].value === 0
+        data[`r-${personID}-other-names`].value === 0
           ? '-'
           : data[`r-${personID}-other-names-manual`].value,
     },
