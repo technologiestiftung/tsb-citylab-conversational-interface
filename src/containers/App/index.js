@@ -17,7 +17,7 @@ export const steps = [
     {
       id: '2',
       options: [
-        { value: 1, label: 'Meldeformular', trigger: 'p-first-name' },
+        { value: 1, label: 'Meldeformular', trigger: 'p-p1-first-name' },
         // { value: 2, label: 'Shared Mobility', trigger: '5' },
         // { value: 3, label: 'Digitalisation', trigger: '5' },
       ]
