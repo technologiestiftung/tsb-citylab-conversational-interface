@@ -1,22 +1,23 @@
 export default function createPersonFields(responses, personID) {
   const firstName = responses[`r-${personID}-first-name`].value;
 
-  const isDoctor = responses[`r-${personID}-doctor`].value === 1;
+  const isDoctor = responses[`r-${personID}-is-doctor`].value === 1;
 
   const lastName = isDoctor
     ? `Dr. ${responses[`r-${personID}-last-name`].value}`
     : responses[`r-${personID}-last-name`].value;
 
-  const hasOtherBirthName = responses[`r-${personID}-birth-name`].value === 1;
+  const hasOtherBirthName =
+    responses[`r-${personID}-has-another-birth-name`].value === 1;
 
   const birthName = hasOtherBirthName
-    ? responses[`r-${personID}-birth-name-manual`].value
+    ? responses[`r-${personID}-birth-name`].value
     : firstName + lastName;
 
-  const hasOtherNames = responses[`r-${personID}-other-names`].value === 1;
+  const hasOtherNames = responses[`r-${personID}-has-other-names`].value === 1;
 
   const otherNames = hasOtherNames
-    ? responses[`r-${personID}-other-names-manual`].value
+    ? responses[`r-${personID}-other-names`].value
     : '-';
 
   const sex = responses[`r-${personID}-sex`].value;
@@ -25,11 +26,11 @@ export default function createPersonFields(responses, personID) {
     responses[`r-${personID}-birth-place`].value
   }`;
 
-  const hasReligion = responses[`r-${personID}-religion`].value === 1;
+  const hasReligion = responses[`r-${personID}-has-religion`].value === 1;
 
   const religion = hasReligion
-    ? responses[`r-${personID}-religion-manual`].value
-    : 'keine';
+    ? responses[`r-${personID}-religion`].value
+    : '-';
 
   const nationality = responses[`r-${personID}-nationality`].value;
 

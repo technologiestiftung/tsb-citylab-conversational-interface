@@ -2,7 +2,7 @@
   IDs follow the pattern: type(p=prompt, r=response)-field
 */
 
-const personSteps = [
+const person1 = [
   {
     id: 'p-p1-first-name',
     message: 'Super! Verrätst Du mir zunächst Deinen Vornamen?',
@@ -22,39 +22,39 @@ const personSteps = [
   {
     id: 'r-p1-last-name',
     user: true,
-    trigger: 'p-p1-doctor',
+    trigger: 'p-p1-is-doctor',
   },
   {
-    id: 'p-p1-doctor',
+    id: 'p-p1-is-doctor',
     message: 'Besitzt Du einen Doktortitel?',
-    trigger: 'r-p1-doctor',
+    trigger: 'r-p1-is-doctor',
   },
   {
-    id: 'r-p1-doctor',
+    id: 'r-p1-is-doctor',
     options: [
-      { value: 1, label: 'Ja', trigger: 'p-p1-other-names' },
-      { value: 0, label: 'Nein', trigger: 'p-p1-other-names' },
+      { value: 1, label: 'Ja', trigger: 'p-p1-has-other-names' },
+      { value: 0, label: 'Nein', trigger: 'p-p1-has-other-names' },
     ],
   },
   {
-    id: 'p-p1-other-names',
+    id: 'p-p1-has-other-names',
     message: 'Besitzt Du einen Ordens- oder Künstlernamen?',
-    trigger: 'r-p1-other-names',
+    trigger: 'r-p1-has-other-names',
   },
   {
-    id: 'r-p1-other-names',
+    id: 'r-p1-has-other-names',
     options: [
-      { value: 1, label: 'Ja', trigger: 'p-p1-other-names-manual' },
+      { value: 1, label: 'Ja', trigger: 'p-p1-other-names' },
       { value: 0, label: 'Nein', trigger: 'p-p1-birth-date' },
     ],
   },
   {
-    id: 'p-p1-other-names-manual',
+    id: 'p-p1-other-names',
     message: 'Wie lautet Dein Ordens- oder Künstlername?',
-    trigger: 'r-p1-other-names-manual',
+    trigger: 'r-p1-other-names',
   },
   {
-    id: 'r-p1-other-names-manual',
+    id: 'r-p1-other-names',
     user: true,
     trigger: 'p-p1-birth-date',
   },
@@ -77,27 +77,27 @@ const personSteps = [
     id: 'r-p1-birth-place',
     user: true,
     placeholder: 'Ort, Land ...',
-    trigger: 'p-p1-birth-name',
+    trigger: 'p-p1-has-another-birth-name',
   },
   {
-    id: 'p-p1-birth-name',
+    id: 'p-p1-has-another-birth-name',
     message: 'Hattest Du als Du geboren wurdest einen anderen Namen?',
-    trigger: 'r-p1-birth-name',
+    trigger: 'r-p1-has-another-birth-name',
   },
   {
-    id: 'r-p1-birth-name',
+    id: 'r-p1-has-another-birth-name',
     options: [
-      { value: 1, label: 'Ja', trigger: 'p-p1-birth-name-manual' },
+      { value: 1, label: 'Ja', trigger: 'p-p1-birth-name' },
       { value: 0, label: 'Nein', trigger: 'p-p1-nationality' },
     ],
   },
   {
-    id: 'p-p1-birth-name-manual',
+    id: 'p-p1-birth-name',
     message: 'Wie lautete Dein voller Name damals?',
-    trigger: 'r-p1-birth-name-manual',
+    trigger: 'r-p1-birth-name',
   },
   {
-    id: 'r-p1-birth-name-manual',
+    id: 'r-p1-birth-name',
     user: true,
     trigger: 'p-p1-nationality',
   },
@@ -110,27 +110,27 @@ const personSteps = [
     id: 'r-p1-nationality',
     user: true,
     placeholder: 'Hier kannst Du auch mehrere nennen',
-    trigger: 'p-p1-religion',
+    trigger: 'p-p1-has-religion',
   },
   {
-    id: 'p-p1-religion',
+    id: 'p-p1-has-religion',
     message: 'Gehörst Du formell einer Religion an?',
-    trigger: 'r-p1-religion',
+    trigger: 'r-p1-has-religion',
   },
   {
-    id: 'r-p1-religion',
+    id: 'r-p1-has-religion',
     options: [
-      { value: 1, label: 'Ja', trigger: 'p-p1-religion-manual' },
+      { value: 1, label: 'Ja', trigger: 'p-p1-religion' },
       { value: 0, label: 'Nein', trigger: 'p-p1-sex' },
     ],
   },
   {
-    id: 'p-p1-religion-manual',
+    id: 'p-p1-religion',
     message: 'Danke. Welcher Religion gehörst Du an?',
-    trigger: 'r-p1-religion-manual',
+    trigger: 'r-p1-religion',
   },
   {
-    id: 'r-p1-religion-manual',
+    id: 'r-p1-religion',
     user: true,
     trigger: 'p-p1-sex',
   },
@@ -146,4 +146,4 @@ const personSteps = [
   },
 ];
 
-export { personSteps as default };
+export { person1 as default };
