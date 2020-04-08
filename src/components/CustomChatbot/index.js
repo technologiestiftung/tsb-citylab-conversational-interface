@@ -80,11 +80,7 @@ const CustomChatbot = p => {
         {
           value: 1,
           label: 'Meldeformular',
-          trigger: input => {
-            setFirstName(input.value);
-
-            return 'p-p1-first-name';
-          },
+          trigger: 'p-p1-first-name',
         },
       ],
     },
