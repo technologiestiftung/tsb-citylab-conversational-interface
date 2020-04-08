@@ -5,8 +5,8 @@ import { Box } from 'rebass/styled-components';
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
-import person1 from './steps/person1';
-import person2 from './steps/person2';
+import insertPerson1 from './steps/person1';
+import insertPerson2 from './steps/person2';
 
 const StyledBox = styled(Box)`
   align-items: center;
@@ -88,8 +88,8 @@ const CustomChatbot = p => {
         },
       ],
     },
-    ...person1,
-    ...person2,
+    ...insertPerson1(),
+    ...insertPerson2(),
     {
       id: 'p-download',
       message: 'Vielen Dank. Dein Formular steht zum Download bereit:',
