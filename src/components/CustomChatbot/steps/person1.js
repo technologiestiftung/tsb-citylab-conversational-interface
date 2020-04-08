@@ -8,7 +8,11 @@ const person1 = [
     id: 'r-p1-first-name',
     user: true,
     placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
-    trigger: 'p-p1-last-name',
+    trigger: input => {
+      console.log(input.value);
+
+      return 'p-p1-last-name';
+    },
   },
   {
     id: 'p-p1-last-name',
