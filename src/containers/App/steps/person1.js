@@ -1,7 +1,3 @@
-/*
-  IDs follow the pattern: type(p=prompt, r=response)-field
-*/
-
 const person1 = [
   {
     id: 'p-p1-first-name',
@@ -141,6 +137,28 @@ const person1 = [
   },
   {
     id: 'r-p1-sex',
+    user: true,
+    trigger: 'p-is-partner-present',
+  },
+  {
+    id: 'p-is-partner-present',
+    message: 'Möchtest Du Dich zusammen mit einem Familienmitglied anmelden?',
+    trigger: 'r-is-partner-present',
+  },
+  {
+    id: 'r-is-partner-present',
+    options: [
+      { value: 1, label: 'Ja', trigger: 'p-p2-first-name' },
+      { value: 0, label: 'Nein', trigger: 'p-marital-status-alone' },
+    ],
+  },
+  {
+    id: 'p-marital-status-alone',
+    message: 'Wie lautet Dein Familienstand?',
+    trigger: 'r-marital-status-alone',
+  },
+  {
+    id: 'r-marital-status-alone',
     user: true,
     trigger: 'p-download',
   },
