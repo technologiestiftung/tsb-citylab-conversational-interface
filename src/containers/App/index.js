@@ -6,7 +6,8 @@ import { Button, Box } from 'rebass/styled-components';
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
-import person1 from './steps/person';
+import person1 from './steps/person1';
+import person2 from './steps/person2';
 
 export const steps = [
     {
@@ -23,6 +24,7 @@ export const steps = [
       ]
     },
     ...person1,
+    ...person2,
     {
       id: "p-download",
       message: "Vielen Dank. Dein Formular steht zum Download bereit:",
