@@ -3,16 +3,14 @@ export default function createPersonFields(responses, personID) {
 
   const isDoctor = responses[`r-${personID}-is-doctor`].value === 1;
 
-  const lastName = isDoctor
-    ? `Dr. ${responses[`r-${personID}-last-name`].value}`
-    : responses[`r-${personID}-last-name`].value;
+  const lastName = responses[`r-${personID}-last-name`].value;
 
   const hasOtherBirthName =
     responses[`r-${personID}-has-another-birth-name`].value === 1;
 
   const birthName = hasOtherBirthName
     ? responses[`r-${personID}-birth-name`].value
-    : firstName + lastName;
+    : `${firstName} ${lastName}`;
 
   const hasOtherNames = responses[`r-${personID}-has-other-names`].value === 1;
 
@@ -41,7 +39,7 @@ export default function createPersonFields(responses, personID) {
       y: 545,
     },
     lastName: {
-      text: lastName,
+      text: isDoctor ? `Dr. ${lastName}` : lastName,
       x: 150,
       y: 575,
     },
