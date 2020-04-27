@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStoreActions } from 'easy-peasy';
 import { Box } from 'rebass/styled-components';
 
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
-import intro from './steps/intro';
-import insertPerson1 from './steps/person1';
-import insertPerson2 from './steps/person2';
+import useIntroSteps from './steps/intro';
+import usePerson1Steps from './steps/person1';
+import usePerson2Steps from './steps/person2';
 
 const StyledBox = styled(Box)`
   align-items: center;
@@ -66,20 +65,14 @@ const BubbleStyled = {
 }
 
 const CustomChatbot = p => {
-  const firstPersonActions = {
-    setFirstName: useStoreActions(state => state.firstPerson.setFirstName),
-    setLastName: useStoreActions(state => state.firstPerson.setLastName),
-  };
-
-  const secondPersonActions = {
-    setFirstName: useStoreActions(state => state.secondPerson.setFirstName),
-    setLastName: useStoreActions(state => state.secondPerson.setLastName),
-  };
+  const introSteps = useIntroSteps();
+  const person1Steps = usePerson1Steps();
+  const person2Steps = usePerson2Steps();
 
   const steps = [
-    ...intro,
-    ...insertPerson1(firstPersonActions),
-    ...insertPerson2(secondPersonActions),
+    ...introSteps,
+    ...person1Steps,
+    ...person2Steps,
     {
       id: 'p-download',
       message: 'Vielen Dank. Dein Formular steht zum Download bereit:',

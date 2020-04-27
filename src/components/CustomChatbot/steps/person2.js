@@ -1,7 +1,13 @@
-export default function insertPerson2(handleStore) {
-  const { setFirstName, setLastName } = handleStore;
+import { useStoreActions } from 'easy-peasy';
+import Store from '~/state/Store';
 
-  return [
+export default function usePerson2Steps() {
+  const setFirstName = useStoreActions(
+    state => state.secondPerson.setFirstName
+  );
+  const setLastName = useStoreActions(state => state.secondPerson.setLastName);
+
+  const steps = [
     {
       id: 'p-p2-first-name',
       message:
@@ -13,9 +19,7 @@ export default function insertPerson2(handleStore) {
       user: true,
       placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
       trigger: input => {
-        console.log('Person 2, first name:', input.value);
         setFirstName(input.value);
-
         return 'p-p2-last-name';
       },
     },
@@ -28,15 +32,16 @@ export default function insertPerson2(handleStore) {
       id: 'r-p2-last-name',
       user: true,
       trigger: input => {
-        console.log('Person 2, last name:', input.value);
         setLastName(input.value);
-
         return 'p-p2-is-doctor';
       },
     },
     {
       id: 'p-p2-is-doctor',
-      message: 'Besitzt die Person einen Doktortitel?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Besitzt ${fullName} einen Doktortitel?`;
+      },
       trigger: 'r-p2-is-doctor',
     },
     {
@@ -48,8 +53,7 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-marital-status-together',
-      message:
-        'In welchem Familienverhältnis stehtst Du mit der genannten Person?',
+      message: 'In welchem Familienverhältnis steht Ihr?',
       trigger: 'r-marital-status-together',
     },
     {
@@ -70,8 +74,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-has-other-names',
-      message:
-        'Danke. Zurück zur Person. Besitzt die Person einen Ordens- oder Künstlernamen?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Danke. Besitzt ${fullName} einen Ordens- oder Künstlernamen?`;
+      },
       trigger: 'r-p2-has-other-names',
     },
     {
@@ -93,7 +99,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-birth-date',
-      message: 'Wie lautet das Geburtsdatum der Person?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Danke. Wie lautet das Geburtsdatum von ${fullName}?`;
+      },
       trigger: 'r-p2-birth-date',
     },
     {
@@ -103,7 +112,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-birth-place',
-      message: 'In welchem Ort und Land wurde die Person geboren?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `In welchem Ort und Land wurde ${fullName} geboren?`;
+      },
       trigger: 'r-p2-birth-place',
     },
     {
@@ -114,7 +126,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-has-another-birth-name',
-      message: 'Hatte die Person als sie geboren wurde einen anderen Namen?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Hatte ${fullName} bei der Geburt einen anderen Namen?`;
+      },
       trigger: 'r-p2-has-another-birth-name',
     },
     {
@@ -136,7 +151,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-nationality',
-      message: 'Bitte nenne mir nun die Staatsangehörigkeit der Person.',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Bitte nenne mir nun die Staatsangehörigkeit von ${fullName}.`;
+      },
       trigger: 'r-p2-nationality',
     },
     {
@@ -147,7 +165,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-has-religion',
-      message: 'Gehört die Person formell einer Religion an?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Gehört ${fullName} formell einer Religion an?`;
+      },
       trigger: 'r-p2-has-religion',
     },
     {
@@ -159,7 +180,7 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-religion',
-      message: 'Danke. Welcher Religion gehört die Person an?',
+      message: 'Welcher Religion?',
       trigger: 'r-p2-religion',
     },
     {
@@ -169,8 +190,10 @@ export default function insertPerson2(handleStore) {
     },
     {
       id: 'p-p2-sex',
-      message:
-        'Welches Geschlecht ist in den Ausweisdokumenten der Person vermerkt?',
+      message: () => {
+        const { fullName } = Store.getState().secondPerson;
+        return `Welches Geschlecht ist in den Ausweisdokumenten von ${fullName} vermerkt?`;
+      },
       trigger: 'r-p2-sex',
     },
     {
@@ -179,4 +202,6 @@ export default function insertPerson2(handleStore) {
       trigger: 'p-download',
     },
   ];
+
+  return steps;
 }

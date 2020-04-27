@@ -1,7 +1,10 @@
-export default function insertPerson1(storeHandlers) {
-  const { setFirstName, setLastName } = storeHandlers;
+import { useStoreActions } from 'easy-peasy';
 
-  return [
+export default function usePerson1Steps() {
+  const setFirstName = useStoreActions(state => state.firstPerson.setFirstName);
+  const setLastName = useStoreActions(state => state.firstPerson.setLastName);
+
+  const steps = [
     {
       id: 'p-p1-first-name',
       message: 'Super! Verrätst Du mir zunächst Deinen Vornamen?',
@@ -12,7 +15,6 @@ export default function insertPerson1(storeHandlers) {
       user: true,
       placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
       trigger: input => {
-        console.log('Person 1, first name:', input.value);
         setFirstName(input.value);
 
         return 'p-p1-last-name';
@@ -27,7 +29,6 @@ export default function insertPerson1(storeHandlers) {
       id: 'r-p1-last-name',
       user: true,
       trigger: input => {
-        console.log('Person 1, last name:', input.value);
         setLastName(input.value);
 
         return 'p-p1-is-doctor';
@@ -176,4 +177,6 @@ export default function insertPerson1(storeHandlers) {
       trigger: 'p-download',
     },
   ];
+
+  return steps;
 }
