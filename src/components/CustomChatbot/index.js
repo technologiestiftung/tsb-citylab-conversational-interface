@@ -6,6 +6,7 @@ import { Box } from 'rebass/styled-components';
 import ChatBot from 'react-simple-chatbot';
 import CreatePDF from '~/components/PDF';
 
+import intro from './steps/intro';
 import insertPerson1 from './steps/person1';
 import insertPerson2 from './steps/person2';
 
@@ -76,21 +77,7 @@ const CustomChatbot = p => {
   };
 
   const steps = [
-    {
-      id: '1',
-      message: 'Hallo! Wie kann ich dir helfen?',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      options: [
-        {
-          value: 1,
-          label: 'Meldeformular',
-          trigger: 'p-p1-first-name',
-        },
-      ],
-    },
+    ...intro,
     ...insertPerson1(firstPersonActions),
     ...insertPerson2(secondPersonActions),
     {
