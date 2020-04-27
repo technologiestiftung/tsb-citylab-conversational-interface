@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStoreActions } from 'easy-peasy';
 import { Box } from 'rebass/styled-components';
 
 import ChatBot from 'react-simple-chatbot';
@@ -64,9 +65,15 @@ const BubbleStyled = {
 }
 
 const CustomChatbot = p => {
-  const {
-    accessStore: { setFirstName, firstName },
-  } = p;
+  const firstPersonActions = {
+    setFirstName: useStoreActions(state => state.firstPerson.setFirstName),
+    setLastName: useStoreActions(state => state.firstPerson.setLastName),
+  };
+
+  const secondPersonActions = {
+    setFirstName: useStoreActions(state => state.secondPerson.setFirstName),
+    setLastName: useStoreActions(state => state.secondPerson.setLastName),
+  };
 
   const steps = [
     {
@@ -84,8 +91,8 @@ const CustomChatbot = p => {
         },
       ],
     },
-    ...insertPerson1(),
-    ...insertPerson2(),
+    ...insertPerson1(firstPersonActions),
+    ...insertPerson2(secondPersonActions),
     {
       id: 'p-download',
       message: 'Vielen Dank. Dein Formular steht zum Download bereit:',
