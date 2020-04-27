@@ -8,7 +8,7 @@ const PersonsModel = {
     }),
     lastName: '',
     setLastName: action((state, payload) => {
-      state.firstName = payload;
+      state.lastName = payload;
     }),
     fullName: computed(state => `${state.firstName} ${state.lastName}`),
   },
@@ -19,7 +19,7 @@ const PersonsModel = {
     }),
     lastName: '',
     setLastName: action((state, payload) => {
-      state.firstName = payload;
+      state.lastName = payload;
     }),
     fullName: computed(state => `${state.firstName} ${state.lastName}`),
   },
