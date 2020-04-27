@@ -1,4 +1,6 @@
-export default function insertPerson2() {
+export default function insertPerson2(handleStore) {
+  const { setFirstName, setLastName } = handleStore;
+
   return [
     {
       id: 'p-p2-first-name',
@@ -10,7 +12,12 @@ export default function insertPerson2() {
       id: 'r-p2-first-name',
       user: true,
       placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
-      trigger: 'p-p2-last-name',
+      trigger: input => {
+        console.log('Person 2, first name:', input.value);
+        setFirstName(input.value);
+
+        return 'p-p2-last-name';
+      },
     },
     {
       id: 'p-p2-last-name',
@@ -20,7 +27,12 @@ export default function insertPerson2() {
     {
       id: 'r-p2-last-name',
       user: true,
-      trigger: 'p-p2-is-doctor',
+      trigger: input => {
+        console.log('Person 2, last name:', input.value);
+        setLastName(input.value);
+
+        return 'p-p2-is-doctor';
+      },
     },
     {
       id: 'p-p2-is-doctor',
