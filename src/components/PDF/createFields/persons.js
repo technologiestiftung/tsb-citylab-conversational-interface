@@ -32,46 +32,92 @@ export default function createPersonFields(responses, personID) {
 
   const nationality = responses[`r-${personID}-nationality`].value;
 
-  return {
-    firstName: {
-      text: firstName,
-      x: 150,
-      y: 545,
+  const fields = {
+    p1: {
+      p1firstName: {
+        text: firstName,
+        x: 150,
+        y: 545,
+      },
+      p1lastName: {
+        text: isDoctor ? `Dr. ${lastName}` : lastName,
+        x: 150,
+        y: 575,
+      },
+      p1birthName: {
+        text: birthName,
+        x: 150,
+        y: 527,
+      },
+      p1otherNames: {
+        text: otherNames,
+        x: 150,
+        y: 456,
+      },
+      p1sex: {
+        text: sex,
+        x: 150,
+        y: 512,
+      },
+      p1birthData: {
+        text: birthData,
+        x: 150,
+        y: 498,
+      },
+      p1religion: {
+        text: religion,
+        x: 150,
+        y: 484,
+      },
+      p1nationality: {
+        text: nationality,
+        x: 150,
+        y: 470,
+      },
     },
-    lastName: {
-      text: isDoctor ? `Dr. ${lastName}` : lastName,
-      x: 150,
-      y: 575,
-    },
-    birthName: {
-      text: birthName,
-      x: 150,
-      y: 527,
-    },
-    otherNames: {
-      text: otherNames,
-      x: 150,
-      y: 456,
-    },
-    sex: {
-      text: sex,
-      x: 150,
-      y: 512,
-    },
-    birthData: {
-      text: birthData,
-      x: 150,
-      y: 498,
-    },
-    religion: {
-      text: religion,
-      x: 150,
-      y: 484,
-    },
-    nationality: {
-      text: nationality,
-      x: 150,
-      y: 470,
+    p2: {
+      p2firstName: {
+        text: firstName,
+        x: 150,
+        y: 388,
+      },
+      p2lastName: {
+        text: isDoctor ? `Dr. ${lastName}` : lastName,
+        x: 150,
+        y: 417,
+      },
+      p2birthName: {
+        text: birthName,
+        x: 150,
+        y: 370,
+      },
+      p2otherNames: {
+        text: otherNames,
+        x: 150,
+        y: 299,
+      },
+      p2sex: {
+        text: sex,
+        x: 150,
+        y: 356,
+      },
+      p2birthData: {
+        text: birthData,
+        x: 150,
+        y: 341,
+      },
+      p2religion: {
+        text: religion,
+        x: 150,
+        y: 327,
+      },
+      p2nationality: {
+        text: nationality,
+        x: 150,
+        y: 313,
+      },
     },
   };
+
+  return fields[personID];
 }

@@ -14,8 +14,9 @@ const CreatePDF = p => {
   const { steps } = p;
 
   const person1 = createPersonFields(steps, 'p1');
+  const person2 = createPersonFields(steps, 'p2');
 
-  const aggregatedFields = { ...person1 };
+  const aggregatedFields = { ...person1, ...person2 };
 
   const modifyPDF = async fields => {
     const existingPdfBytes = await fetch(anmeldungPDF).then(res =>
