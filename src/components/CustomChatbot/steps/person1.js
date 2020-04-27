@@ -1,4 +1,6 @@
-export default function insertPerson1() {
+export default function insertPerson1(storeHandlers) {
+  const { setFirstName, setLastName } = storeHandlers;
+
   return [
     {
       id: 'p-p1-first-name',
@@ -10,20 +12,26 @@ export default function insertPerson1() {
       user: true,
       placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
       trigger: input => {
-        console.log(input.value);
+        console.log('Person 1, first name:', input.value);
+        setFirstName(input.value);
 
         return 'p-p1-last-name';
       },
     },
     {
       id: 'p-p1-last-name',
-      message: 'Danke {previousValue}, und dein Nachname?',
+      message: 'Danke {previousValue}, und Dein Nachname?',
       trigger: 'r-p1-last-name',
     },
     {
       id: 'r-p1-last-name',
       user: true,
-      trigger: 'p-p1-is-doctor',
+      trigger: input => {
+        console.log('Person 1, last name:', input.value);
+        setLastName(input.value);
+
+        return 'p-p1-is-doctor';
+      },
     },
     {
       id: 'p-p1-is-doctor',
