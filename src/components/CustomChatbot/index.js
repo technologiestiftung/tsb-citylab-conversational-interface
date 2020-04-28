@@ -8,6 +8,7 @@ import CreatePDF from '~/components/PDF';
 import useIntroSteps from './steps/intro';
 import usePerson1Steps from './steps/person1';
 import usePerson2Steps from './steps/person2';
+import useFlatSteps from './steps/flats';
 
 const StyledBox = styled(Box)`
   align-items: center;
@@ -73,6 +74,7 @@ const CustomChatbot = p => {
     ...introSteps,
     ...person1Steps,
     ...person2Steps,
+    ...useFlatSteps(),
     {
       id: 'p-download',
       message: 'Vielen Dank. Dein Formular steht zum Download bereit:',

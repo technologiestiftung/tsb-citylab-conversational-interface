@@ -199,7 +199,7 @@ export default function usePerson2Steps() {
     {
       id: 'r-p2-sex',
       user: true,
-      trigger: 'p-download',
+      trigger: 'newflat_movingindate_1',
     },
   ];
 
