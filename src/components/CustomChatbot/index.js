@@ -66,14 +66,10 @@ const BubbleStyled = {
 }
 
 const CustomChatbot = p => {
-  const introSteps = useIntroSteps();
-  const person1Steps = usePerson1Steps();
-  const person2Steps = usePerson2Steps();
-
   const steps = [
-    ...introSteps,
-    ...person1Steps,
-    ...person2Steps,
+    ...useIntroSteps(),
+    ...usePerson1Steps(),
+    ...usePerson2Steps(),
     ...useFlatSteps(),
     {
       id: 'p-download',
