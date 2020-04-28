@@ -1,4 +1,6 @@
-import { action } from 'easy-peasy';
+import { action, debug } from 'easy-peasy';
+
+// TODO: insert actual coords of all fields
 
 const FlatModel = {
   newflat_gemeindekennzahl: {
@@ -25,20 +27,20 @@ const FlatModel = {
     text: 'x',
     options: {
       alleinige_wohnung: {
-        x: null,
-        y: null,
+        x: 1,
+        y: 1,
       },
       hauptwohnung: {
-        x: null,
-        y: null,
+        x: 2,
+        y: 2,
       },
       nebenwohnung: {
-        x: null,
-        y: null,
+        x: 3,
+        y: 3,
       },
     },
     setFlatType: action((state, payload) => {
-      state = { state, ...state.options[payload] };
+      state = { ...state, ...state.options[payload] };
     }),
   },
   country_of_previous_residence: {
@@ -47,7 +49,7 @@ const FlatModel = {
     y: null,
     setCountry: action((state, payload) => {
       const { movedFromAbroad, country } = payload;
-      state.value = movedFromAbroad ? country : '';
+      state.text = movedFromAbroad ? country : '';
     }),
   },
   oldflat_gemeindekennzahl: {
@@ -55,7 +57,7 @@ const FlatModel = {
     x: null,
     y: null,
   },
-  oldflat_movingindate: {
+  oldflat_movingoutdate: {
     text: null,
     x: null,
     y: null,
@@ -91,34 +93,40 @@ const FlatModel = {
     }),
   },
   oldflat_iskept: {
-    value: null,
     text: 'x',
-    x: null,
-    y: null,
-    setKeptStatus: action((state, payload) => {
-      state.value = payload;
-    }),
-  },
-  oldflat_kept_type: {
-    text: '',
     options: {
+      not_kept: {
+        x: 1,
+        y: 1,
+      },
       hauptwohnung: {
-        x: null,
-        y: null,
+        x: 2,
+        y: 2,
       },
       nebenwohnung: {
-        x: null,
-        y: null,
+        x: 3,
+        y: 3,
       },
     },
-    setKeptFlatType: action((state, payload) => {
-      state = { state, text: 'x', ...state.options[payload] };
+    setKeptFlatStatus: action((state, payload) => {
+      state = { ...state, ...state.options[payload] };
     }),
   },
   other_flats: {
     text: 'x',
-    x: null,
-    y: null,
+    options: {
+      yes: {
+        x: 1,
+        y: 1,
+      },
+      no: {
+        x: 2,
+        y: 2,
+      },
+    },
+    setOtherFlatsStatus: action((state, payload) => {
+      state = { ...state, ...state.options[payload] };
+    }),
   },
   setField: action((state, payload) => {
     const { field, value } = payload;
