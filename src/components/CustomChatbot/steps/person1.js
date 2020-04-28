@@ -1,8 +1,8 @@
 import { useStoreActions } from 'easy-peasy';
+import Store from '~/state/Store';
 
 export default function usePerson1Steps() {
-  const setFirstName = useStoreActions(state => state.firstPerson.setFirstName);
-  const setLastName = useStoreActions(state => state.firstPerson.setLastName);
+  const setField = useStoreActions(state => state.person.setField);
 
   const steps = [
     {
@@ -15,7 +15,7 @@ export default function usePerson1Steps() {
       user: true,
       placeholder: 'Hier kannst Du auch mehrere Vornamen eintragen ...',
       trigger: input => {
-        setFirstName(input.value);
+        setField({ field: `person1_firstname`, value: input.value });
 
         return 'p-p1-last-name';
       },
@@ -28,11 +28,7 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-last-name',
       user: true,
-      trigger: input => {
-        setLastName(input.value);
-
-        return 'p-p1-is-doctor';
-      },
+      trigger: 'p-p1-is-doctor',
     },
     {
       id: 'p-p1-is-doctor',
@@ -42,8 +38,28 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-is-doctor',
       options: [
-        { value: 1, label: 'Ja', trigger: 'p-p1-has-other-names' },
-        { value: 0, label: 'Nein', trigger: 'p-p1-has-other-names' },
+        {
+          value: `yes`,
+          label: 'Ja',
+          trigger: input => {
+            const lastNameWithTitle = `Dr. ${input.steps['r-p1-last-name'].value}`;
+            setField({ field: `person1_lastname`, value: lastNameWithTitle });
+
+            return 'p-p1-has-other-names';
+          },
+        },
+        {
+          value: `no`,
+          label: 'Nein',
+          trigger: input => {
+            setField({
+              field: `person1_lastname`,
+              value: input.steps[`r-p1-last-name`].value,
+            });
+
+            return 'p-p1-has-other-names';
+          },
+        },
       ],
     },
     {
@@ -55,7 +71,17 @@ export default function usePerson1Steps() {
       id: 'r-p1-has-other-names',
       options: [
         { value: 1, label: 'Ja', trigger: 'p-p1-other-names' },
-        { value: 0, label: 'Nein', trigger: 'p-p1-birth-date' },
+        {
+          value: 0,
+          label: 'Nein',
+          trigger: () => {
+            setField({
+              field: `person1_alternativename`,
+              value: `-`,
+            });
+            return 'p-p1-birth-date';
+          },
+        },
       ],
     },
     {
@@ -66,7 +92,13 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-other-names',
       user: true,
-      trigger: 'p-p1-birth-date',
+      trigger: input => {
+        setField({
+          field: `person1_alternativename`,
+          value: input.value,
+        });
+        return 'p-p1-birth-date';
+      },
     },
     {
       id: 'p-p1-birth-date',
@@ -87,7 +119,12 @@ export default function usePerson1Steps() {
       id: 'r-p1-birth-place',
       user: true,
       placeholder: 'Ort, Land ...',
-      trigger: 'p-p1-has-another-birth-name',
+      trigger: input => {
+        const birthData = `${input.steps['r-p1-birth-date'].value}, ${input.value}`;
+        setField({ field: `person1_birthdata`, value: birthData });
+
+        return 'p-p1-has-another-birth-name';
+      },
     },
     {
       id: 'p-p1-has-another-birth-name',
@@ -98,7 +135,16 @@ export default function usePerson1Steps() {
       id: 'r-p1-has-another-birth-name',
       options: [
         { value: 1, label: 'Ja', trigger: 'p-p1-birth-name' },
-        { value: 0, label: 'Nein', trigger: 'p-p1-nationality' },
+        {
+          value: 0,
+          label: 'Nein',
+          trigger: input => {
+            const birthName = `${input.steps['r-p1-first-name'].value} ${input.steps['r-p1-last-name'].value}`;
+            setField({ field: `person1_birthname`, value: birthName });
+
+            return 'p-p1-nationality';
+          },
+        },
       ],
     },
     {
@@ -109,7 +155,11 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-birth-name',
       user: true,
-      trigger: 'p-p1-nationality',
+      trigger: input => {
+        setField({ field: `person1_birthname`, value: input.value });
+
+        return 'p-p1-nationality';
+      },
     },
     {
       id: 'p-p1-nationality',
@@ -120,7 +170,11 @@ export default function usePerson1Steps() {
       id: 'r-p1-nationality',
       user: true,
       placeholder: 'Hier kannst Du auch mehrere nennen',
-      trigger: 'p-p1-has-religion',
+      trigger: input => {
+        setField({ field: `person1_nationality`, value: input.value });
+
+        return 'p-p1-has-religion';
+      },
     },
     {
       id: 'p-p1-has-religion',
@@ -130,8 +184,16 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-has-religion',
       options: [
-        { value: 1, label: 'Ja', trigger: 'p-p1-religion' },
-        { value: 0, label: 'Nein', trigger: 'p-p1-sex' },
+        { value: 'yes', label: 'Ja', trigger: 'p-p1-religion' },
+        {
+          value: 'no',
+          label: 'Nein',
+          trigger: () => {
+            setField({ field: `person1_religion`, value: `-` });
+
+            return 'p-p1-sex';
+          },
+        },
       ],
     },
     {
@@ -142,7 +204,11 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-religion',
       user: true,
-      trigger: 'p-p1-sex',
+      trigger: input => {
+        setField({ field: `person1_religion`, value: input.value });
+
+        return 'p-p1-sex';
+      },
     },
     {
       id: 'p-p1-sex',
@@ -152,7 +218,11 @@ export default function usePerson1Steps() {
     {
       id: 'r-p1-sex',
       user: true,
-      trigger: 'p-is-partner-present',
+      trigger: input => {
+        setField({ field: `person1_sex`, value: input.value });
+
+        return 'p-is-partner-present';
+      },
     },
     {
       id: 'p-is-partner-present',
@@ -174,7 +244,11 @@ export default function usePerson1Steps() {
     {
       id: 'r-marital-status-alone',
       user: true,
-      trigger: 'p-download',
+      trigger: input => {
+        setField({ field: `marital_status`, value: input.value });
+
+        return 'newflat_movingindate_1';
+      },
     },
   ];
 
