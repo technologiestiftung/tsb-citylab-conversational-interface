@@ -1,4 +1,4 @@
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import Store from '~/state/Store';
 
 export default function useFlatSteps() {
@@ -19,13 +19,13 @@ export default function useFlatSteps() {
     state => state.flats.country_of_previous_residence.setCountry
   );
 
-  const partnerIsPresent = false; // TODO: get info from store
-
   const steps = [
     {
       id: `newflat_movingindate_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent
+        const { person2IsPresent } = Store.getState().utils;
+
+        const phrasingDistinction = person2IsPresent
           ? 'werdet Ihr in Eure'
           : 'wirst Du in Deine';
 
@@ -44,7 +44,8 @@ export default function useFlatSteps() {
     {
       id: `newflat_municipality_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Eurer' : 'Deiner';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Eurer' : 'Deiner';
 
         return `Bitte nenne mir zunächst Postleitzahl, Gemeinde und ggfs. Ortsteil ${phrasingDistinction} neuen Wohnung.`;
       },
@@ -94,7 +95,8 @@ export default function useFlatSteps() {
     {
       id: `newflat_type_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Eure' : 'Deine';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Eure' : 'Deine';
 
         return `Die neue Wohnung ist ${phrasingDistinction}... ?`;
       },
@@ -132,7 +134,8 @@ export default function useFlatSteps() {
     {
       id: `country_of_previous_residence_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Euer' : 'Dein';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Euer' : 'Dein';
 
         return `In welchem Staat befand sich ${phrasingDistinction} letzter Wohnsitz?`;
       },
@@ -159,7 +162,8 @@ export default function useFlatSteps() {
     {
       id: `country_of_previous_residence_3`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent
           ? 'Ihr zugezogen seid'
           : 'Du zugezogen bist';
 
@@ -179,7 +183,8 @@ export default function useFlatSteps() {
     {
       id: `oldflat_municipality_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Eurer' : 'Deiner';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Eurer' : 'Deiner';
 
         return `Bitte nenne nun Postleitzahl, Gemeinde und ggfs. Ortsteil ${phrasingDistinction} bisherigen Wohnung im Inland.`;
       },
@@ -237,7 +242,8 @@ export default function useFlatSteps() {
     {
       id: `oldflat_type_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Eure' : 'Deine';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Eure' : 'Deine';
 
         return `Die bisherige Wohnung war ${phrasingDistinction}... ?`;
       },
@@ -275,7 +281,8 @@ export default function useFlatSteps() {
     {
       id: `oldflat_iskept_1`,
       message: () => {
-        const phrasingDistinction = partnerIsPresent ? 'Eure' : 'Deine';
+        const { person2IsPresent } = Store.getState().utils;
+        const phrasingDistinction = person2IsPresent ? 'Eure' : 'Deine';
 
         return `Falls diese Wohnung beibehalten wird, wird sie ${phrasingDistinction} Haupt- oder Nebenwohnung?`;
       },
@@ -313,8 +320,13 @@ export default function useFlatSteps() {
     {
       id: `other_flats_1`,
       message: () => {
-        const person2 = `other person`; // TODO: get name from store
-        return `Haben Du oder ${person2} noch weitere Wohnungen in Deutschland? (Falls ja, siehe: ...)`; // TODO: find link
+        const { person2IsPresent } = Store.getState().utils;
+        const person2 = Store.getState().person.person2_firstname.text;
+        const phrasingDistinction = person2IsPresent
+          ? `Haben Du oder ${person2}`
+          : `Hast Du`;
+
+        return `${phrasingDistinction} noch weitere Wohnungen in Deutschland? (Falls ja, siehe: ...)`; // TODO: find link
       },
       trigger: `other_flats_2`,
     },
