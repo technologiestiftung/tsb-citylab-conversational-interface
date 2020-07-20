@@ -177,7 +177,7 @@ export default function useFlatSteps() {
       trigger: input => {
         setCountry({ movedFromAbroad: true, country: input.value });
         setOtherFlatsStatus(`no`);
-        return null;
+        return `p-download`;
       },
     },
     {
@@ -338,7 +338,7 @@ export default function useFlatSteps() {
           label: `Ja`,
           trigger: input => {
             setOtherFlatsStatus(input.value);
-            return null;
+            return `p-download`;
           },
         },
         {
@@ -346,7 +346,7 @@ export default function useFlatSteps() {
           label: `Nein`,
           trigger: input => {
             setOtherFlatsStatus(input.value);
-            return null;
+            return `p-download`;
           },
         },
       ],
