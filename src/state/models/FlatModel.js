@@ -1,42 +1,40 @@
 import { action, debug } from 'easy-peasy';
 
-// TODO: insert actual coords of all fields
-
 const FlatModel = {
   newflat_gemeindekennzahl: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 183,
+    y: 754,
   },
   newflat_movingindate: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 42,
+    y: 699,
   },
   newflat_municipality: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 106,
+    y: 699,
   },
   newflat_address: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 42,
+    y: 672,
   },
   newflat_type: {
     text: 'x',
     options: {
       alleinige_wohnung: {
-        x: 1,
-        y: 1,
+        x: 133,
+        y: 734,
       },
       hauptwohnung: {
-        x: 2,
-        y: 2,
+        x: 193,
+        y: 734,
       },
       nebenwohnung: {
-        x: 3,
-        y: 3,
+        x: 248,
+        y: 734,
       },
     },
     setFlatType: action((state, payload) => {
@@ -44,48 +42,48 @@ const FlatModel = {
     }),
   },
   country_of_previous_residence: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 430,
+    y: 646,
     setCountry: action((state, payload) => {
       const { movedFromAbroad, country } = payload;
       state.text = movedFromAbroad ? country : '';
     }),
   },
   oldflat_gemeindekennzahl: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 452,
+    y: 754,
   },
   oldflat_movingoutdate: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 310,
+    y: 699,
   },
   oldflat_municipality: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 377,
+    y: 699,
   },
   oldflat_address: {
-    text: null,
-    x: null,
-    y: null,
+    text: '',
+    x: 308,
+    y: 672,
   },
   oldflat_type: {
     text: 'x',
     options: {
       alleinige_wohnung: {
-        x: null,
-        y: null,
+        x: 414,
+        y: 734,
       },
       hauptwohnung: {
-        x: null,
-        y: null,
+        x: 463,
+        y: 734,
       },
       nebenwohnung: {
-        x: null,
-        y: null,
+        x: 516,
+        y: 734,
       },
     },
     setFlatType: action((state, payload) => {
@@ -96,16 +94,16 @@ const FlatModel = {
     text: 'x',
     options: {
       not_kept: {
-        x: 1,
-        y: 1,
+        x: 206,
+        y: 628,
       },
       hauptwohnung: {
-        x: 2,
-        y: 2,
+        x: 340,
+        y: 628,
       },
       nebenwohnung: {
-        x: 3,
-        y: 3,
+        x: 446,
+        y: 628,
       },
     },
     setKeptFlatStatus: action((state, payload) => {
@@ -116,12 +114,12 @@ const FlatModel = {
     text: 'x',
     options: {
       yes: {
-        x: 1,
-        y: 1,
+        x: 391,
+        y: 612,
       },
       no: {
-        x: 2,
-        y: 2,
+        x: 340,
+        y: 612,
       },
     },
     setOtherFlatsStatus: action((state, payload) => {
