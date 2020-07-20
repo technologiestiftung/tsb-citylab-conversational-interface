@@ -7,7 +7,7 @@ const UtilsModel = {
         return storeState.person.person2_lastname;
       },
     ],
-    person => person.text != null
+    person => person.text !== ''
   ),
 };
 
