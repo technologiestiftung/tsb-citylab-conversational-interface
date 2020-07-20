@@ -4,21 +4,18 @@ import styled from 'styled-components';
 import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import download from 'downloadjs';
 
+import Store from '~/state/Store';
+
 import Button from '~/components/Button';
 
 // const anmeldungPDFLink = "https://www.berlin.de/formularverzeichnis/?formular=/labo/zentrale-einwohnerangelegenheiten/_assets/anmeldung_bei_der_meldebehoerde.pdf"
 const anmeldungPDF = '/public/pdf/anmeldung_bei_der_meldebehoerde.pdf';
 // const anmeldungPDF = "/public/pdf/test.pdf"
 
-const CreatePDF = p => {
-  const { steps } = p;
-
-  const personFields = useStoreState(state => state.person);
-  const flatFields = useStoreState(state => state.flats);
-
+const CreatePDF = () => {
   const aggregatedFields = {
-    ...personFields,
-    ...flatFields,
+    ...Store.getState().person,
+    ...Store.getState().flats,
   };
 
   const modifyPDF = async fields => {
