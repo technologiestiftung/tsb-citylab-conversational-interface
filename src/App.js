@@ -72,7 +72,7 @@ const StyledChatBot = styled(ChatBot)`
     margin-top: 24px;
     height: 60px;
     padding-left: 28px;
-    font-family: ${p => p.theme.fonts.headline}
+    font-family: ${p => p.theme.fonts.headline};
   }
 
   .rsc-os-option-element {

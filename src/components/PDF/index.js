@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import download from 'downloadjs'
 
 import Button from '../Button';
@@ -20,8 +19,6 @@ const CreatePDF = p => {
 
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
-
-    const { width, height } = firstPage.getSize();
 
     firstPage.drawText(name, {
       x: 150,

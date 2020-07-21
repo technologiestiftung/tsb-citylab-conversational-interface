@@ -13,13 +13,13 @@ import defaultTheme from './style/themes/default';
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={Store}>
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <App />
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <App />
       </ThemeProvider>
     </StoreProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
