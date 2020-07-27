@@ -1,8 +1,6 @@
-/* eslint-disable */
 const px = d => {
   return `${d}px`;
 };
-
 
 const defaultTheme = {
   fonts: {

@@ -1,57 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStoreActions, useStoreState } from 'easy-peasy';
-import { Button, Box } from 'rebass/styled-components';
-
 import ChatBot from 'react-simple-chatbot';
-import CreatePDF from '~/components/PDF';
+import CreatePDF from './components/PDF';
+import { Box } from 'rebass/styled-components';
 
 export const steps = [
-    {
-      id: '1',
-      message: 'Hallo! Wie kann ich dir helfen?',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      options: [
-        { value: 1, label: 'Meldeformular', trigger: '3' },
-        // { value: 2, label: 'Shared Mobility', trigger: '5' },
-        // { value: 3, label: 'Digitalisation', trigger: '5' },
-      ]
-    },
-    {
-      id: '3',
-      message: 'Wie ist dein Familienname?',
-      trigger: 'name',
-    },
-    {
-      id: 'name',
-      user: true,
-      trigger: '4',
-    },
-    {
-      id: "4",
-      message: "Ihr Formular steht zum Download bereit:",
-      trigger: "5"
-    },
-    {
-      id: "5",
-      component: (<CreatePDF></CreatePDF>),
-      end: true,
-    },
-    // {
-    //   id: "6",
-    //   message: "Okay, let's talk about Shared Mobility!",
-    //   end: true,
-    // },
-    // {
-    //   id: "7",
-    //   message: "Okay, let's talk about Digitalisation!",
-    //   end: true,
-    // },
+  {
+    id: '1',
+    message: 'Hallo! Wie kann ich dir helfen?',
+    trigger: '2',
+  },
+  {
+    id: '2',
+    options: [
+      { value: 1, label: 'Meldeformular', trigger: '3' },
+      // { value: 2, label: 'Shared Mobility', trigger: '5' },
+      // { value: 3, label: 'Digitalisation', trigger: '5' },
+    ]
+  },
+  {
+    id: '3',
+    message: 'Wie ist dein Familienname?',
+    trigger: 'name',
+  },
+  {
+    id: 'name',
+    user: true,
+    trigger: '4',
+  },
+  {
+    id: "4",
+    message: "Ihr Formular steht zum Download bereit:",
+    trigger: "5"
+  },
+  {
+    id: "5",
+    component: (<CreatePDF></CreatePDF>),
+    end: true,
+  },
+  // {
+  //   id: "6",
+  //   message: "Okay, let's talk about Shared Mobility!",
+  //   end: true,
+  // },
+  // {
+  //   id: "7",
+  //   message: "Okay, let's talk about Digitalisation!",
+  //   end: true,
+  // },
 ];
-
 
 const StyledBox = styled(Box)`
   align-items: center;
@@ -75,7 +72,7 @@ const StyledChatBot = styled(ChatBot)`
     margin-top: 24px;
     height: 60px;
     padding-left: 28px;
-    font-family: ${p => p.theme.fonts.headline}
+    font-family: ${p => p.theme.fonts.headline};
   }
 
   .rsc-os-option-element {
@@ -101,7 +98,6 @@ const StyledChatBot = styled(ChatBot)`
 
 const BubbleStyled = {
   borderRadius: '0px',
-  boxShadow: 'none',
   borderWidth: `0px`,
   fontSize: `20px`,
   borderColor: 'rgba(47, 47, 162, 0.05)',
@@ -109,7 +105,7 @@ const BubbleStyled = {
   borderStyle: 'solid'
 }
 
-const App = () => {
+function App() {
   return (
     <StyledBox
       px={["2%","5%","10%",'30%']}
@@ -126,6 +122,6 @@ const App = () => {
         steps={steps} />
     </StyledBox>
   );
-};
+}
 
 export default App;

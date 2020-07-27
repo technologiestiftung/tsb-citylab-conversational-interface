@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import React from 'react';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import download from 'downloadjs'
 
-import Button from '~/components/Button';
+import Button from '../Button';
 
 // const anmeldungPDFLink = "https://www.berlin.de/formularverzeichnis/?formular=/labo/zentrale-einwohnerangelegenheiten/_assets/anmeldung_bei_der_meldebehoerde.pdf"
-const anmeldungPDF = "/public/pdf/anmeldung_bei_der_meldebehoerde.pdf"
+const anmeldungPDF = "/pdf/anmeldung_bei_der_meldebehoerde.pdf"
 // const anmeldungPDF = "/public/pdf/test.pdf"
 
 const CreatePDF = p => {
@@ -20,8 +19,6 @@ const CreatePDF = p => {
 
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
-
-    const { width, height } = firstPage.getSize();
 
     firstPage.drawText(name, {
       x: 150,
