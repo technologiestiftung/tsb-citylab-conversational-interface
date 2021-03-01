@@ -9,7 +9,7 @@
     "react-scripts": "4.0.2",
     "styled-components": "5.2.1",
     "@testing-library/jest-dom": "5.11.9",
-    "@testing-library/react": "9.5.0",
+    "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "7.2.1",
     "downloadjs": "1.4.7",
     "easy-peasy": "3.3.1",
