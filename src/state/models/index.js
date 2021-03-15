@@ -1,5 +1,7 @@
-import DataModel from './DataModel';
+import DataModel from "./DataModel";
 
-export default {
+const model = {
   data: DataModel,
 };
+
+export default model;
