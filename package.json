@@ -12,7 +12,7 @@
     "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "12.8.0",
     "downloadjs": "1.4.7",
-    "easy-peasy": "3.3.1",
+    "easy-peasy": "5.0.3",
     "react-simple-chatbot": "0.6.1",
     "rebass": "4.0.7",
     "styled-normalize": "8.0.7"
